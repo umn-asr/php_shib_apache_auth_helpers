@@ -50,12 +50,16 @@ function shib_get_current_url() {
 }
 
 function shib_logout_url() { 
+  if(preg_match('/idp-test.shib.umn.edu/', $_SERVER["Shib-Identity-Provider"])) {
+    $redirect_url = 'https://www-test.umn.edu/logout';
+  } else {
+    $redirect_url='https://umn.edu/logout';
+  }
   return 'https://' . 
          $_SERVER['HTTP_HOST'] . 
          '/Shibboleth.sso/Logout?' .
          'return=' . 
-         urlencode(shib_get_current_url());
-
+         urlencode($redirect_url);
 }
 // If you except the web-server to protect a script, you can place this 
 // at the top of the script to simply cause the script to exist if the user is not logged in
