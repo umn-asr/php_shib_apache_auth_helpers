@@ -25,12 +25,15 @@ function shib_get_attribute($which_one) {
   }
 }
 
-function shib_login_and_redirect_url() { 
+function shib_login_and_redirect_url($redirect_url='') { 
+  if($redirect_url == '') {
+    $redirect_url = shib_get_current_url();
+  }
   return 'https://' . 
          $_SERVER['HTTP_HOST'] . 
          '/Shibboleth.sso/Login?' .
          'target=' . 
-         urlencode(shib_get_current_url());
+         urlencode($redirect_url);
 }
 
 function shib_get_current_url() {
