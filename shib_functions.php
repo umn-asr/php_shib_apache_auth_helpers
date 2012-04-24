@@ -54,9 +54,9 @@ function shib_get_current_url() {
 
 function shib_logout_url() { 
   if(preg_match('/idp-test.shib.umn.edu/', $_SERVER["Shib-Identity-Provider"])) {
-    $redirect_url = 'https://www-test.umn.edu/logout';
+    $redirect_url = 'https://idp-test.shib.umn.edu/idp/LogoutUMN';
   } else {
-    $redirect_url='https://umn.edu/logout';
+    $redirect_url='https://idp2.shib.umn.edu/idp/LogoutUMN';
   }
   return 'https://' . 
          $_SERVER['HTTP_HOST'] . 
